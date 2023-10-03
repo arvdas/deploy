@@ -1,0 +1,21 @@
+{% extends 'user.html' %}
+{% block content %}
+    {% load static %}
+    <section class="categories" style="margin-bottom: 10px;">
+        <div class="container" >
+            <div class="row" >
+                {% for i in data %}
+                    <!-- Content for each item in 'data' goes here -->
+                    <div class="col-lg-6" style="margin-bottom: 20px;"> <!-- Add margin-bottom for space -->
+                        <div class="categories__item set-bg" style="padding: 10px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); text-align: center;background-color: rgb(239, 235, 235);">
+                            <h4 style="font-size: 18px; color: black; margin-bottom: 5px;"><b>{{i.category}}</b></h4>
+                            <p style="font-size: 16px; color: #555;">{{ i.description }}</p>
+                        </div>
+                    </div>
+                    <!-- End of content for each 'i' in 'data' -->
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock %}
+

@@ -1,0 +1,58 @@
+{% extends 'index.html' %}
+{% block content %}
+{% load static %}
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-12">
+            <div class="bg-secondary rounded p-4">
+                <h6 class="mb-4">ORDERS</h6>
+                <div style="height: 400px; overflow: auto;">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Username</th>
+                            <th scope="col">Ph</th>
+                            <th scope="col">STATE</th>
+                            <th scope="col">ADDRESS</th>
+                            <th scope="col">CITY</th>
+                            <th scope="col">PRODUCT</th>
+                            
+                            <th scope="col">PRICE</th>
+                           
+
+                          
+                           
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in data %}
+                        <tr>
+                            <th scope="row">{{forloop.counter}}</th>
+                            <td>{{i.userid.Username}}</td>
+                            <td>{{i.userid.Phone_no}}</td>
+                            <td>{{i.State}}</td>
+                            <td>{{i.Address}}</td>
+                            <td>{{i.City}}</td>
+
+                            <td>{{i.cartid.productid.productName}}</td>
+                            
+                           
+                            <td>{{i.cartid.total}}</td>
+                            
+
+                            
+                            
+                            
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

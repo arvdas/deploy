@@ -1,0 +1,36 @@
+{% extends 'user.html' %}
+
+{% block content %}
+    {% load static %}
+    <section class="product spad text-center"> <!-- Center the section -->
+        <div class="container">
+            <div class="row justify-content-center"> <!-- Center the row -->
+                <div class="col-lg-9 col-md-7">
+                    <div class="filter__item">
+                        <div class="row">
+                            {% for i in data %}
+                                <div class="col-lg-4 col-md-6 col-sm-6">
+                                    <div class="product__item">
+                                        <div class="product__item__pic set-bg"
+                                             data-setbg="{{ i.productImage.url }}"
+                                             style="background-image: url('{{ i.productImage.url }}'); width: 150px; height: 150px;">
+                                            <ul class="product__item__pic__hover">
+                                                
+                                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="product__item__text" style="text-align: center;">
+                                            <h6 style="font-size: 16px;"><a href="{% url 'single' id=i.id %}">{{ i.productName }}</a></h6>
+                                            <h5 style="font-size: 18px; color: #ff5733;">Rs.{{ i.productPrice }}/-</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+   
+{% endblock %}

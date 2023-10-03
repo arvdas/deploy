@@ -1,0 +1,28 @@
+
+{% extends 'user.html' %}
+{% load static %}
+{% block content %}
+    
+    {% for i in data %}
+        <div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 20px;background-color:whitesmoke">
+            <p style="font-weight: bold;">Order {{ forloop.counter }}</p>
+            <p><span style="font-weight: bold;">Name:</span> {{ i.userid.Username }}</p>
+            <p><span style="font-weight: bold;">Phone Number:</span> {{ i.userid.Phone_no }}</p>
+            <p><span style="font-weight: bold;">Email:</span> {{ i.userid.Email }}</p>
+            <p><span style="font-weight: bold;">Products:</span> {{ i.cartid.productid.productName }}</p>
+            <p><span style="font-weight: bold;">Total:</span> {{ i.cartid.total }}</p>
+            {% if i.status == 1 %}
+            <p><span style="font-weight: bold;color:blue">DELIVERED</span> </p>
+            <p><a href="{% url 'complaint' id=i.id %}"><button><span style="font-weight: bold;color:red">COMPLAINT</span></button></a> </p>
+
+            {% else %}
+            <p><span style="font-weight: bold;color:red">NOT DELIVERED</span> </p>
+            {% endif %}
+        </div>
+    {% endfor %}
+{% endblock %}
+
+
+
+
+

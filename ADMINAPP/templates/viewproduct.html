@@ -1,0 +1,52 @@
+{% extends 'index.html' %}
+{% block content %}
+{% load static %}
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-12">
+            <div class="bg-secondary rounded p-4">
+                <div style="height: 400px; overflow: auto;">
+                <h6 class="mb-4">PRODUCTS</h6>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">PRODUCT</th>
+                            <th scope="col">IMAGE</th>
+                            <th scope="col">DESCRIPTION</th>
+                            <th scope="col">PRICE</th>
+                            <th scope="col">STOCK(kg)</th>
+
+                            <th scope="col">CATEGORY</th>
+                            <th scope="col">EDIT</th>
+                            <th scope="col">DELETE</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in data %}
+                        <tr>
+                            <th scope="row">{{forloop.counter}}</th>
+                            <td>{{i.productName}}</td>
+                            <td><img src="{{ i.productImage.url }}" width="100"></td>
+                            <td>{{i.productDescription}}</td>
+                            <td>{{i.productPrice}}</td>
+                            {% if i.stock == 0 %}
+                            <td><a href="{% url 'editproduct' id=i.id %}"><button class="btn btn-primary">Add Stock</button></a></td>
+                            {% else %}
+                            <td>{{i.stock}}</td>
+                            {% endif %}
+                            <td>{{i.category}}</td>
+                            <td><a href="{% url 'editproduct' id=i.id %}"><button class="btn btn-primary">EDIT</button></a></td> 
+                            <td><a href="{% url 'deleteproduct' id=i.id %}"><button class="btn btn-primary">DELETE</button></a></td> 
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

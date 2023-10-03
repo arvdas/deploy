@@ -1,0 +1,27 @@
+{% extends 'user.html' %}
+
+{% block content %}
+    <div class="container">
+        <h2>Submit a Complaint</h2>
+        {% for i in data %}
+        <form action="{% url 'complaintdata' id=i.productid.id %}" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" class="form-control" id="username" name="Username" value="{{ request.session.username }}" readonly>
+            </div>
+            <div class="form-group">
+                <label for="productName">Product Name:</label>
+                <input type="text" class="form-control" id="productName" name="productName" value="{{ i.productid.productName }}" readonly>
+            </div>
+            
+            <div class="form-group">
+                <label for="complaint">Complaint:</label>
+                <textarea class="form-control" id="complaint" name="complaint" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit Complaint</button>
+        </form>
+        
+        {% endfor %}
+    </div>
+{% endblock %}

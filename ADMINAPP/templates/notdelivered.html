@@ -1,0 +1,53 @@
+{% extends 'index.html' %}
+{% block content %}
+{% load static %}
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-12">
+            <div class="bg-secondary rounded p-4">
+                <h6 class="mb-4">PRODUCTS</h6>
+                <div style="height: 400px; overflow: auto;"> 
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">NAME</th>
+                                <th scope="col">PRODUCT</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">Total</th>
+                                <th scope="col">Address</th>
+                                <th scope="col">CITY</th>
+                                <th scope="col">PAYMENT STATUS</th>
+                                <th scope="col">ACTION</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for i in data %}
+                            <tr>
+                                <th scope="row">{{forloop.counter}}</th>
+                                <td>{{i.userid.Username}}</td>
+                                <td>{{i.cartid.productid.productName}}</td>
+                                <td>{{i.cartid.quantity}}</td>
+                                <td>{{i.cartid.total}}</td>
+                                <td>{{i.Address}}</td>
+                                <td>{{i.City}}</td>
+                                <td>
+                                    {% if i.cartid.status == 1 %}
+                                        Paid
+                                    {% else %}
+                                        Not Paid
+                                    {% endif %}
+                                </td>
+                                <td><a href="{% url 'delivereddata' id=i.id %}"><button class="btn btn-primary">Deliver</button></a></td> 
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div> 
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

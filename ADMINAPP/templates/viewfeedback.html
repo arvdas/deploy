@@ -1,0 +1,45 @@
+{% extends 'index.html' %}
+{% block content %}
+{% load static %}
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-12">
+            <div class="bg-secondary rounded p-4">
+                <h6 class="mb-4">DESTINATIONS</h6>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">FName</th>
+                            <th scope="col">LName</th>
+                            <th scope="col">Email</th>
+                            
+                            <th scope="col">Message</th>
+                          
+                           
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in data %}
+                        <tr>
+                            <th scope="row">{{forloop.counter}}</th>
+                            <td>{{i.FName}}</td>
+                            <td>{{i.LName}}</td>
+                            <td>{{i.Email}}</td>
+                            <td>{{i.Message}}</td>
+                           
+                            
+                            
+                            
+                            
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

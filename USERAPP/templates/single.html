@@ -1,0 +1,71 @@
+{% extends 'user.html' %}
+
+{% block content %}
+    {% load static %}
+    <section class="product-details spad">
+        <div class="container">
+            <div class="row">
+                {% for i in data %}
+                <div class="col-lg-6 col-md-6">
+                    <div class="product__details__pic">
+                        <div class="product__details__pic__item">
+                            <img class="product__details__pic__item--large" src="{{ i.productImage.url }}" alt="" width="300" height="400"> <!-- Adjust the width as needed -->
+                        </div>
+                        <div class="product__details__pic__slider owl-carousel owl-loaded owl-drag">
+                            <!-- Owl Carousel Content -->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="product__details__text">
+                        <form action="{% url 'cartdata' id=i.id %}" method="post">
+                            {% csrf_token %}
+                        <div class="product__details__price">Rs.{{ i.productPrice }}/-</div>
+                        <input type="hidden" id="price" value="{{i.productPrice}}">
+                        
+                        <p>{{ i.productDescription }}</p>
+                        <div class="product__details__quantity">
+                            <label for="quantity">Quantity(in Kg):</label>
+                            <div class="quantity">
+                                
+                                <input type="number" id="quantity" name ="quantity" value="1" min="1">
+                                
+                            </div>
+                        </div>
+                        <div class="product__details__total">
+                            <label for="total">
+                            <input type="text" id="total" name="total" value="{{ i.productPrice }}" >
+                        </div>
+                        
+                        <div class="product__details__quantity">
+                            {% if i.stock == 0 %}
+                            <p style="color:red">Out Of Stock</p>
+                            {% else %}
+                            <p style="color:blue">STOCK:{{i.stock}}</p>
+                            <button type="submit" class="site-btn">ADD TO CART</button>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </form>
+            </div>
+        </div>
+    </section>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#quantity').on('change', function () {
+                var quantity = $('#quantity').val();
+                var price = $('#price').val();
+                var total = parseFloat(quantity) * parseFloat(price);
+                $('#total').val(total);
+            });
+        });
+    </script>
+
+{% endblock %}

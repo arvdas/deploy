@@ -1,0 +1,19 @@
+{% extends 'user.html' %}
+
+{% block content %}
+    {% load static %}
+    <div style="text-align: center; background-color: #f5f5f5; margin: 150px auto; padding: 20px; max-width: 600px; border-radius: 10px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+        <h1 style="font-size: 28px; margin-bottom: 20px;">
+            Thank You  {% if 'u_id' in request.session %}{{ request.session.username }} for Choosing {% endif %} <span style="color: blue;">DailyMart</span>
+        </h1>
+        <p style="font-size: 18px; color: #666; margin-bottom: 20px;">
+            Your order has been confirmed. We're thrilled to welcome you as our valued customer!
+        </p>
+        <p style="font-size: 18px; color: #666; margin-bottom: 20px;">
+            If you have any questions or need assistance, please don't hesitate to reach out to our friendly customer support team.
+        </p>
+        <p style="font-size: 18px; color: #333;">
+            Happy Shopping with DailyMart!
+        </p>
+    </div>
+{% endblock %}

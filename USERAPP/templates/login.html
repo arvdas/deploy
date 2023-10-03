@@ -1,0 +1,31 @@
+{% extends 'user.html' %}
+
+{% block content %}
+    {% load static %}
+    <div class="contact-form spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="contact__form__title">
+                        <h2>LOGIN</h2>
+                    </div>
+                </div>
+            </div>
+            <form action="{% url 'publicdata' %}" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="username">Email:</label>
+                    <input type="email" id="username" name="Email" class="form-control" placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="Password" class="form-control" placeholder="Enter your password">
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="site-btn">LOGIN</button>
+                    <p>{{msg}}</p>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
